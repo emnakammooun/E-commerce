@@ -1,5 +1,5 @@
 (function($) {
-  'use strict';
+//   'use strict';
   //Open submenu on hover in compact sidebar mode and horizontal menu mode
   $(document).on('mouseenter mouseleave', '.sidebar .nav-item', function(ev) {
     var body = $('body');

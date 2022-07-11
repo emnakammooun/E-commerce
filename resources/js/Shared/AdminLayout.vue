@@ -22,11 +22,10 @@
   </body>
 </template>
 <script>
-import {Link} from '@inertiajs/inertia-vue3';
 import AdminSidebarVue from './AdminSidebar.vue';
 import AdminNavVue from './AdminNavbar.vue';
 
 export default {
-    components: { Link, AdminSidebarVue, AdminNavVue },
+    components: { AdminSidebarVue, AdminNavVue },
 };
 </script>

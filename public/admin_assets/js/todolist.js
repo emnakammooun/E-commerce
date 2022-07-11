@@ -1,5 +1,5 @@
 (function($) {
-  'use strict';
+//   'use strict';
   $(function() {
     var todoListItem = $('.todo-list');
     var todoListInput = $('.todo-list-input');
