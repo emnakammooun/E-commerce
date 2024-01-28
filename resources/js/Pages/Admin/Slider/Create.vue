@@ -31,54 +31,88 @@
             <div class="card-body">
               <!-- <h4 class="card-title">Default form</h4>
               <p class="card-description">Basic form layout</p> -->
-              <form class="forms-sample">
+              <form class="forms-sample" @submit.prevent="submit" accept="multipart/form-data">
                 <div class="form-group">
-                  <label for="sl-position">Position</label>
+                  <label for="sl-position">Slider Position</label>
                   <input
-                    type="integer"
-                    class="form-control"
+                    type="text"
+                    v-model="form.slider_position"
+                    class="form-control" 
                     id="sl-position"
                     placeholder="Slider Position"
                   />
+                 <!--<div v-if="errors.title" style="color:red">{{errors.title}}</div> -->
                 </div>
+                <div class="form-group">
+                  <label for="sl-position">Title</label>
+                  <input
+                    type="text"
+                    v-model="form.title"
+                    class="form-control" 
+                    id="sl-position"
+                    placeholder="Slider Title"
+                  />
+                 <!--<div v-if="errors.title" style="color:red">{{errors.title}}</div> -->
+                </div>
+                <div class="form-group">
+                  <label for="sl-position">Description</label>
+                  <textarea v-model="form.description"
+                  class="form.control" rows="10" cols="40"></textarea>
+                
+                 <!--<div v-if="errors.description" style="color:red">{{errors.description}}</div> -->
+                </div>
+                <div class="form-group">
+                  <label for="sl-position">Button Name</label>
+                  <input
+                    type="text"
+                    v-model="form.btn_name"
+                    class="form-control"
+                    id="sl-position"
+                    placeholder="Slider Button Name"
+                  />
+              <!--<div v-if="errors.btn_name" style="color:red">{{errors.btn_name}}</div> -->   
+                </div>
+                <div class="form-group">
+                  <label for="sl-position">Button Link</label>
+                  <input
+                    type="text"
+                    v-model="form.btn_link"
+                    class="form-control"
+                    id="sl-position"
+                    placeholder="Slider Button Link"
+                  />
+                 <!--  <div v-if="errors.btn_link" style="color:red">{{errors.btn_link}}</div> -->
+                </div>
+              
                 <div class="form-group">
                   <label for="sl-img">Choose Image</label>
                   <input
-                    type="file"
+                    type="file" accept="image/*" @input= "form.slider_image = $event.target.files[0]"
                     class="form-control"
                     id="sl-img"
                   />
+                  <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                    {{ form.progress.percentage }}%
+                  </progress>
+
                 </div>
-                <!-- <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
-                  />
-                </div>
+
                 <div class="form-group">
-                  <label for="exampleInputConfirmPassword1"
-                    >Confirm Password</label
-                  >
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputConfirmPassword1"
-                    placeholder="Password"
-                  />
+                  <label for="sl-position">Status </label>
+                  <select  v-model="form.status"
+                    class="form-control">
+                    <option value="1" selected>Active</option>
+                    <option value="0">Block</option>
+                  </select>
+                  
                 </div>
-                <div class="form-check form-check-flat form-check-primary">
-                  <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" /> Remember
-                    me <i class="input-helper"></i
-                  ></label>
-                </div> -->
-                <button type="submit" class="btn btn-gradient-primary me-2">
+                
+                <button type="submit"
+                :disabled= "form.processing"
+                 class="btn btn-gradient-primary me-2">
                   Submit
                 </button>
-                <a href="/slider" class="btn btn-light">Back</a>
+                <inertia-link href="/slider" class="btn btn-light">Back</inertia-link>
               </form>
             </div>
           </div>
@@ -93,6 +127,24 @@ import AdminLayout from "../../../Shared/AdminLayout";
 export default {
     
   layout: AdminLayout,
+  data(){
+   return{
+     form: this.$inertia.form({
+    slider_position:null,
+    slider_image:null,
+    title:null,
+    description:null,
+    btn_link:null,
+    btn_name:null,
+    status: null,
+  }),
+     }},
+
+  methods:{
+   submit() {
+     this.form.post("/slider/store");
+    },
+   },
 };
 </script>
 

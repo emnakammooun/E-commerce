@@ -56,6 +56,24 @@
           <i class="mdi mdi-contacts menu-icon"></i>
         </inertia-link>
       </li>
+      <li class="nav-item">
+        <inertia-link class="nav-link" href="/brand">
+          <span class="menu-title">Brand</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </inertia-link>
+      </li>
+      <li class="nav-item">
+        <inertia-link class="nav-link" href="/category">
+          <span class="menu-title">Category</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </inertia-link>
+      </li>
+      <li class="nav-item">
+        <inertia-link class="nav-link" href="/product">
+          <span class="menu-title">Product</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </inertia-link>
+      </li>
     </ul>
   </nav>
 </template>
